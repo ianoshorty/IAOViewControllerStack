@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3CBF02EA15CD003600E0A381 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF02E915CD003600E0A381 /* UIKit.framework */; };
+		3CBF02EC15CD003600E0A381 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF02EB15CD003600E0A381 /* Foundation.framework */; };
+		3CBF02EE15CD003600E0A381 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF02ED15CD003600E0A381 /* CoreGraphics.framework */; };
+		3CBF02F415CD003600E0A381 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3CBF02F215CD003600E0A381 /* InfoPlist.strings */; };
+		3CBF02F615CD003600E0A381 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF02F515CD003600E0A381 /* main.m */; };
+		3CBF02FA15CD003600E0A381 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF02F915CD003600E0A381 /* AppDelegate.m */; };
+		3CBF030215CD003600E0A381 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF030115CD003600E0A381 /* SenTestingKit.framework */; };
+		3CBF030315CD003600E0A381 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF02E915CD003600E0A381 /* UIKit.framework */; };
+		3CBF030415CD003600E0A381 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBF02EB15CD003600E0A381 /* Foundation.framework */; };
+		3CBF030C15CD003600E0A381 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3CBF030A15CD003600E0A381 /* InfoPlist.strings */; };
+		3CBF030F15CD003600E0A381 /* IAOViewControllerStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF030E15CD003600E0A381 /* IAOViewControllerStackTests.m */; };
+		3CBF031B15CD00C700E0A381 /* UIViewController+IAOUIViewControllerStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF031A15CD00C700E0A381 /* UIViewController+IAOUIViewControllerStack.m */; };
+		3CBF031E15CD021900E0A381 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF031D15CD021900E0A381 /* TestViewController.m */; };
+		3CBF032115CD022900E0A381 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CBF031F15CD022900E0A381 /* TestViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3CBF030515CD003600E0A381 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CBF02DC15CD003600E0A381 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CBF02E415CD003600E0A381;
+			remoteInfo = IAOViewControllerStack;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3CBF02E515CD003600E0A381 /* IAOViewControllerStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IAOViewControllerStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CBF02E915CD003600E0A381 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3CBF02EB15CD003600E0A381 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3CBF02ED15CD003600E0A381 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3CBF02F115CD003600E0A381 /* IAOViewControllerStack-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IAOViewControllerStack-Info.plist"; sourceTree = "<group>"; };
+		3CBF02F315CD003600E0A381 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3CBF02F515CD003600E0A381 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3CBF02F715CD003600E0A381 /* IAOViewControllerStack-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IAOViewControllerStack-Prefix.pch"; sourceTree = "<group>"; };
+		3CBF02F815CD003600E0A381 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3CBF02F915CD003600E0A381 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3CBF030015CD003600E0A381 /* IAOViewControllerStackTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IAOViewControllerStackTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CBF030115CD003600E0A381 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3CBF030915CD003600E0A381 /* IAOViewControllerStackTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IAOViewControllerStackTests-Info.plist"; sourceTree = "<group>"; };
+		3CBF030B15CD003600E0A381 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3CBF030D15CD003600E0A381 /* IAOViewControllerStackTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAOViewControllerStackTests.h; sourceTree = "<group>"; };
+		3CBF030E15CD003600E0A381 /* IAOViewControllerStackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAOViewControllerStackTests.m; sourceTree = "<group>"; };
+		3CBF031915CD00C700E0A381 /* UIViewController+IAOUIViewControllerStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+IAOUIViewControllerStack.h"; sourceTree = "<group>"; };
+		3CBF031A15CD00C700E0A381 /* UIViewController+IAOUIViewControllerStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IAOUIViewControllerStack.m"; sourceTree = "<group>"; };
+		3CBF031C15CD021900E0A381 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		3CBF031D15CD021900E0A381 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		3CBF032015CD022900E0A381 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TestViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3CBF02E215CD003600E0A381 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF02EA15CD003600E0A381 /* UIKit.framework in Frameworks */,
+				3CBF02EC15CD003600E0A381 /* Foundation.framework in Frameworks */,
+				3CBF02EE15CD003600E0A381 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CBF02FC15CD003600E0A381 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF030215CD003600E0A381 /* SenTestingKit.framework in Frameworks */,
+				3CBF030315CD003600E0A381 /* UIKit.framework in Frameworks */,
+				3CBF030415CD003600E0A381 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3CBF02DA15CD003600E0A381 = {
+			isa = PBXGroup;
+			children = (
+				3CBF02EF15CD003600E0A381 /* IAOViewControllerStack */,
+				3CBF030715CD003600E0A381 /* IAOViewControllerStackTests */,
+				3CBF02E815CD003600E0A381 /* Frameworks */,
+				3CBF02E615CD003600E0A381 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3CBF02E615CD003600E0A381 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF02E515CD003600E0A381 /* IAOViewControllerStack.app */,
+				3CBF030015CD003600E0A381 /* IAOViewControllerStackTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CBF02E815CD003600E0A381 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF02E915CD003600E0A381 /* UIKit.framework */,
+				3CBF02EB15CD003600E0A381 /* Foundation.framework */,
+				3CBF02ED15CD003600E0A381 /* CoreGraphics.framework */,
+				3CBF030115CD003600E0A381 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CBF02EF15CD003600E0A381 /* IAOViewControllerStack */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF031815CD00C700E0A381 /* IAOViewControllerStack */,
+				3CBF02F815CD003600E0A381 /* AppDelegate.h */,
+				3CBF02F915CD003600E0A381 /* AppDelegate.m */,
+				3CBF031C15CD021900E0A381 /* TestViewController.h */,
+				3CBF031D15CD021900E0A381 /* TestViewController.m */,
+				3CBF02F015CD003600E0A381 /* Supporting Files */,
+			);
+			path = IAOViewControllerStack;
+			sourceTree = "<group>";
+		};
+		3CBF02F015CD003600E0A381 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF031F15CD022900E0A381 /* TestViewController.xib */,
+				3CBF02F115CD003600E0A381 /* IAOViewControllerStack-Info.plist */,
+				3CBF02F215CD003600E0A381 /* InfoPlist.strings */,
+				3CBF02F515CD003600E0A381 /* main.m */,
+				3CBF02F715CD003600E0A381 /* IAOViewControllerStack-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3CBF030715CD003600E0A381 /* IAOViewControllerStackTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF030D15CD003600E0A381 /* IAOViewControllerStackTests.h */,
+				3CBF030E15CD003600E0A381 /* IAOViewControllerStackTests.m */,
+				3CBF030815CD003600E0A381 /* Supporting Files */,
+			);
+			path = IAOViewControllerStackTests;
+			sourceTree = "<group>";
+		};
+		3CBF030815CD003600E0A381 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF030915CD003600E0A381 /* IAOViewControllerStackTests-Info.plist */,
+				3CBF030A15CD003600E0A381 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3CBF031815CD00C700E0A381 /* IAOViewControllerStack */ = {
+			isa = PBXGroup;
+			children = (
+				3CBF031915CD00C700E0A381 /* UIViewController+IAOUIViewControllerStack.h */,
+				3CBF031A15CD00C700E0A381 /* UIViewController+IAOUIViewControllerStack.m */,
+			);
+			path = IAOViewControllerStack;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3CBF02E415CD003600E0A381 /* IAOViewControllerStack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CBF031215CD003600E0A381 /* Build configuration list for PBXNativeTarget "IAOViewControllerStack" */;
+			buildPhases = (
+				3CBF02E115CD003600E0A381 /* Sources */,
+				3CBF02E215CD003600E0A381 /* Frameworks */,
+				3CBF02E315CD003600E0A381 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IAOViewControllerStack;
+			productName = IAOViewControllerStack;
+			productReference = 3CBF02E515CD003600E0A381 /* IAOViewControllerStack.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3CBF02FF15CD003600E0A381 /* IAOViewControllerStackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CBF031515CD003600E0A381 /* Build configuration list for PBXNativeTarget "IAOViewControllerStackTests" */;
+			buildPhases = (
+				3CBF02FB15CD003600E0A381 /* Sources */,
+				3CBF02FC15CD003600E0A381 /* Frameworks */,
+				3CBF02FD15CD003600E0A381 /* Resources */,
+				3CBF02FE15CD003600E0A381 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CBF030615CD003600E0A381 /* PBXTargetDependency */,
+			);
+			name = IAOViewControllerStackTests;
+			productName = IAOViewControllerStackTests;
+			productReference = 3CBF030015CD003600E0A381 /* IAOViewControllerStackTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CBF02DC15CD003600E0A381 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Ian Outterside";
+			};
+			buildConfigurationList = 3CBF02DF15CD003600E0A381 /* Build configuration list for PBXProject "IAOViewControllerStack" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3CBF02DA15CD003600E0A381;
+			productRefGroup = 3CBF02E615CD003600E0A381 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CBF02E415CD003600E0A381 /* IAOViewControllerStack */,
+				3CBF02FF15CD003600E0A381 /* IAOViewControllerStackTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3CBF02E315CD003600E0A381 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF02F415CD003600E0A381 /* InfoPlist.strings in Resources */,
+				3CBF032115CD022900E0A381 /* TestViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CBF02FD15CD003600E0A381 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF030C15CD003600E0A381 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3CBF02FE15CD003600E0A381 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3CBF02E115CD003600E0A381 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF02F615CD003600E0A381 /* main.m in Sources */,
+				3CBF02FA15CD003600E0A381 /* AppDelegate.m in Sources */,
+				3CBF031B15CD00C700E0A381 /* UIViewController+IAOUIViewControllerStack.m in Sources */,
+				3CBF031E15CD021900E0A381 /* TestViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CBF02FB15CD003600E0A381 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CBF030F15CD003600E0A381 /* IAOViewControllerStackTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3CBF030615CD003600E0A381 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CBF02E415CD003600E0A381 /* IAOViewControllerStack */;
+			targetProxy = 3CBF030515CD003600E0A381 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3CBF02F215CD003600E0A381 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CBF02F315CD003600E0A381 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3CBF030A15CD003600E0A381 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CBF030B15CD003600E0A381 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3CBF031F15CD022900E0A381 /* TestViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CBF032015CD022900E0A381 /* en */,
+			);
+			name = TestViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3CBF031015CD003600E0A381 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		3CBF031115CD003600E0A381 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3CBF031315CD003600E0A381 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IAOViewControllerStack/IAOViewControllerStack-Prefix.pch";
+				INFOPLIST_FILE = "IAOViewControllerStack/IAOViewControllerStack-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3CBF031415CD003600E0A381 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IAOViewControllerStack/IAOViewControllerStack-Prefix.pch";
+				INFOPLIST_FILE = "IAOViewControllerStack/IAOViewControllerStack-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3CBF031615CD003600E0A381 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IAOViewControllerStack.app/IAOViewControllerStack";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IAOViewControllerStack/IAOViewControllerStack-Prefix.pch";
+				INFOPLIST_FILE = "IAOViewControllerStackTests/IAOViewControllerStackTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3CBF031715CD003600E0A381 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IAOViewControllerStack.app/IAOViewControllerStack";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IAOViewControllerStack/IAOViewControllerStack-Prefix.pch";
+				INFOPLIST_FILE = "IAOViewControllerStackTests/IAOViewControllerStackTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CBF02DF15CD003600E0A381 /* Build configuration list for PBXProject "IAOViewControllerStack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CBF031015CD003600E0A381 /* Debug */,
+				3CBF031115CD003600E0A381 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CBF031215CD003600E0A381 /* Build configuration list for PBXNativeTarget "IAOViewControllerStack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CBF031315CD003600E0A381 /* Debug */,
+				3CBF031415CD003600E0A381 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3CBF031515CD003600E0A381 /* Build configuration list for PBXNativeTarget "IAOViewControllerStackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CBF031615CD003600E0A381 /* Debug */,
+				3CBF031715CD003600E0A381 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3CBF02DC15CD003600E0A381 /* Project object */;
+}
