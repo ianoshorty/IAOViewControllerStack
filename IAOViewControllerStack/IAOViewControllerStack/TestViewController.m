@@ -49,29 +49,27 @@
 - (IBAction)addViewControllerPressed:(id)sender {
 
     UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
-    NSArray *array = [rootViewController viewControllerStack];
-    
     TestViewController *testViewController = [[TestViewController alloc] initWithNibName:@"TestViewController" bundle:[NSBundle mainBundle]];
-    testViewController.title = [NSString stringWithFormat:@"%i", [array count]];
+    testViewController.title = [NSString stringWithFormat:@"%i", [rootViewController.childViewControllers count]];
     
     NSLog(@"Saving %@", testViewController.title);
     
     [self pushViewController:testViewController animated:YES completion:^{
-        NSLog(@"%@",[rootViewController viewControllerStack]);
+        NSLog(@"%@",[rootViewController childViewControllers]);
     }];
 }
 
 - (IBAction)removeViewControllerPressed:(id)sender {
     [self popViewControllerAnimated:YES completion:^{
         UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
-        NSLog(@"%@",[rootViewController viewControllerStack]);
+        NSLog(@"%@",[rootViewController childViewControllers]);
     }];
 }
 
 - (IBAction)rootViewControllerPressed:(id)sender {
     [self popToRootViewControllerAnimated:YES completion:^{
         UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
-        NSLog(@"%@",[rootViewController viewControllerStack]);
+        NSLog(@"%@",[rootViewController childViewControllers]);
     }];
 }
 

@@ -20,6 +20,5 @@
 - (void)popToRootViewControllerAnimated:(BOOL)animated completion:(void(^)(void))success;
 
 - (UIViewController *)rootViewControllerForNavigationStack;
-- (NSMutableArray *)viewControllerStack;
 
 @end

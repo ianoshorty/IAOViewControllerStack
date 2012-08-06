@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 
 static char kIAOROOTVIEWCONTROLLER_IDENTIFIER;
-static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
 
 @implementation UIViewController (IAOUIViewControllerStack)
 
@@ -22,24 +21,15 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
     
     UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
     
-    NSMutableArray *viewControllerStack = [rootViewController viewControllerStack];
-    
-    if (!viewControllerStack) {
-        viewControllerStack = [NSMutableArray arrayWithCapacity:1];
-        objc_setAssociatedObject(rootViewController, &kIAOVIEWCONTROLLERSTACK_IDENTIFIER, viewControllerStack, OBJC_ASSOCIATION_RETAIN);
-    }
-    
-    // Set the viewcontrollers root view controller property
     objc_setAssociatedObject(controller, &kIAOROOTVIEWCONTROLLER_IDENTIFIER, rootViewController, OBJC_ASSOCIATION_ASSIGN);
-    
-    [rootViewController addChildViewController:controller];
     
     BOOL previousClip = rootViewController.view.clipsToBounds;
     rootViewController.view.clipsToBounds = YES;
     
     // Transition
-    if ([viewControllerStack count] > 0) {
-        UIViewController *previousViewController = [viewControllerStack objectAtIndex:([viewControllerStack count] - 1)];
+    if ([rootViewController.childViewControllers count] > 0) {
+        UIViewController *previousViewController = [rootViewController.childViewControllers objectAtIndex:([rootViewController.childViewControllers count] - 1)];
+        [rootViewController addChildViewController:controller];
         
         if (animated) {
             controller.view.frame = CGRectMake(rootViewController.view.bounds.origin.x + rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, controller.view.frame.size.width, controller.view.frame.size.height);
@@ -58,8 +48,6 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
         } completion:^(BOOL finished) {
             [controller didMoveToParentViewController:rootViewController];
             
-            // Add the viewcontroller to the stack
-            [viewControllerStack addObject:controller];
             rootViewController.view.clipsToBounds = previousClip;
             
             if (success) {
@@ -70,10 +58,6 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
     else {
         void (^addBlock)(void) = ^{
             [controller didMoveToParentViewController:rootViewController];
-            
-            // Add the viewcontroller to the stack
-            [viewControllerStack addObject:controller];
-            
             rootViewController.view.clipsToBounds = previousClip;
             
             if (success) {
@@ -82,6 +66,7 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
         };
         
         controller.view.frame = rootViewController.view.bounds;
+        [rootViewController addChildViewController:controller];
         [rootViewController.view addSubview:controller.view];
         
         if (animated) {
@@ -118,21 +103,19 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
         return;
     }
     
-    NSMutableArray *viewControllerStack = [rootViewController viewControllerStack];
-    
     BOOL previousClip = rootViewController.view.clipsToBounds;
     rootViewController.view.clipsToBounds = YES;
     
     // Cant pop if we have no children
-    if (!viewControllerStack || [viewControllerStack count] == 0) {
+    if ([rootViewController.childViewControllers count] == 0) {
         return;
     }
     
-    UIViewController *topViewController = [viewControllerStack objectAtIndex:([viewControllerStack count] - 1)];
+    UIViewController *topViewController = [rootViewController.childViewControllers objectAtIndex:([rootViewController.childViewControllers count] - 1)];
     
     // Move between top and next child
-    if ([viewControllerStack count] > 1) {
-        UIViewController *nextChildViewController = [viewControllerStack objectAtIndex:([viewControllerStack count] - 2)];
+    if ([rootViewController.childViewControllers count] > 1) {
+        UIViewController *nextChildViewController = [rootViewController.childViewControllers objectAtIndex:([rootViewController.childViewControllers count] - 2)];
         
         [topViewController willMoveToParentViewController:nil];
         
@@ -152,7 +135,6 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
             
         } completion:^(BOOL finished) {
             [topViewController removeFromParentViewController];
-            [viewControllerStack removeObject:topViewController];
             rootViewController.view.clipsToBounds = previousClip;
             
             if (success) {
@@ -165,10 +147,7 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
             [topViewController willMoveToParentViewController:nil];
             [topViewController.view removeFromSuperview];
             [topViewController removeFromParentViewController];
-            [viewControllerStack removeObject:topViewController];
             rootViewController.view.clipsToBounds = previousClip;
-            
-            objc_setAssociatedObject(rootViewController, &kIAOVIEWCONTROLLERSTACK_IDENTIFIER, nil, OBJC_ASSOCIATION_RETAIN);
             
             if (success) {
                 success();
@@ -203,35 +182,28 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
         return;
     }
     
-    NSMutableArray *viewControllerStack = [rootViewController viewControllerStack];
-    
     BOOL previousClip = rootViewController.view.clipsToBounds;
     rootViewController.view.clipsToBounds = YES;
     
     // Cant pop if we have no children
-    if (!viewControllerStack || [viewControllerStack count] == 0) {
+    if ([rootViewController.childViewControllers count] == 0) {
         return;
     }
     
-    UIViewController *topViewController = [viewControllerStack objectAtIndex:([viewControllerStack count] - 1)];
-    [viewControllerStack removeObject:topViewController];
+    UIViewController *topViewController = [rootViewController.childViewControllers objectAtIndex:([rootViewController.childViewControllers count] - 1)];
     
-    while ([viewControllerStack count] > 0) {
-        UIViewController *controller = [viewControllerStack objectAtIndex:([viewControllerStack count] - 1)];
+    while ([rootViewController.childViewControllers count] > 1) {
+        UIViewController *controller = [rootViewController.childViewControllers objectAtIndex:([rootViewController.childViewControllers count] - 2)];
         
         [controller willMoveToParentViewController:nil];
         [controller removeFromParentViewController];
-        [viewControllerStack removeObject:controller];
     }
     
     void (^removeBlock)(void) = ^{
         [topViewController willMoveToParentViewController:nil];
         [topViewController.view removeFromSuperview];
         [topViewController removeFromParentViewController];
-        [viewControllerStack removeObject:topViewController];
         rootViewController.view.clipsToBounds = previousClip;
-        
-        objc_setAssociatedObject(rootViewController, &kIAOVIEWCONTROLLERSTACK_IDENTIFIER, nil, OBJC_ASSOCIATION_RETAIN);
         
         if (success) {
             success();
@@ -261,16 +233,6 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
     else {
         return self;
     }
-}
-
-- (NSMutableArray *)viewControllerStack {
-    UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
-    
-    if (rootViewController != self) {
-        return nil;
-    }
-    
-    return (NSMutableArray *)objc_getAssociatedObject(self, &kIAOVIEWCONTROLLERSTACK_IDENTIFIER);
 }
 
 @end
