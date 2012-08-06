@@ -54,11 +54,25 @@
     TestViewController *testViewController = [[TestViewController alloc] initWithNibName:@"TestViewController" bundle:[NSBundle mainBundle]];
     testViewController.title = [NSString stringWithFormat:@"%i", [array count]];
     
-    [self pushViewController:testViewController animated:YES];
-}
-- (IBAction)removeViewControllerPressed:(id)sender {
+    NSLog(@"Saving %@", testViewController.title);
     
-    [self popViewControllerAnimated:YES];
+    [self pushViewController:testViewController animated:YES completion:^{
+        NSLog(@"%@",[rootViewController viewControllerStack]);
+    }];
+}
+
+- (IBAction)removeViewControllerPressed:(id)sender {
+    [self popViewControllerAnimated:YES completion:^{
+        UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
+        NSLog(@"%@",[rootViewController viewControllerStack]);
+    }];
+}
+
+- (IBAction)rootViewControllerPressed:(id)sender {
+    [self popToRootViewControllerAnimated:YES completion:^{
+        UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
+        NSLog(@"%@",[rootViewController viewControllerStack]);
+    }];
 }
 
 @end

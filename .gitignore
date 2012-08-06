@@ -13,3 +13,6 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+
+IAOViewControllerStack/.DS_Store
+IAOViewControllerStack/IAOViewControllerStack/.DS_Store

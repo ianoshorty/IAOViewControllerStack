@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *viewControllerLabel;
 
 - (IBAction)addViewControllerPressed:(id)sender;
+- (IBAction)rootViewControllerPressed:(id)sender;
 
 @end

@@ -15,6 +15,10 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
 @implementation UIViewController (IAOUIViewControllerStack)
 
 - (void)pushViewController:(UIViewController *)controller animated:(BOOL)animated {
+    [self pushViewController:controller animated:animated completion:nil];
+}
+
+- (void)pushViewController:(UIViewController *)controller animated:(BOOL)animated completion:(void (^)(void))success {
     
     UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
     
@@ -30,13 +34,16 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
     
     [rootViewController addChildViewController:controller];
     
+    BOOL previousClip = rootViewController.view.clipsToBounds;
+    rootViewController.view.clipsToBounds = YES;
+    
     // Transition
     if ([viewControllerStack count] > 0) {
         UIViewController *previousViewController = [viewControllerStack objectAtIndex:([viewControllerStack count] - 1)];
         
-        controller.view.frame = CGRectMake(rootViewController.view.bounds.origin.x + rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, controller.view.frame.size.width, controller.view.frame.size.height);
-        
         if (animated) {
+            controller.view.frame = CGRectMake(rootViewController.view.bounds.origin.x + rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, controller.view.frame.size.width, controller.view.frame.size.height);
+            
             [UIView animateWithDuration:0.3 animations:^{
                 previousViewController.view.frame = CGRectMake(rootViewController.view.bounds.origin.x - rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, previousViewController.view.frame.size.width, previousViewController.view.frame.size.height);
             }];
@@ -50,9 +57,14 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
             
         } completion:^(BOOL finished) {
             [controller didMoveToParentViewController:rootViewController];
-    
+            
             // Add the viewcontroller to the stack
             [viewControllerStack addObject:controller];
+            rootViewController.view.clipsToBounds = previousClip;
+            
+            if (success) {
+                success();
+            }
         }];
     }
     else {
@@ -61,6 +73,12 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
             
             // Add the viewcontroller to the stack
             [viewControllerStack addObject:controller];
+            
+            rootViewController.view.clipsToBounds = previousClip;
+            
+            if (success) {
+                success();
+            }
         };
         
         controller.view.frame = rootViewController.view.bounds;
@@ -88,6 +106,10 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
 }
 
 - (void)popViewControllerAnimated:(BOOL)animated {
+    [self popViewControllerAnimated:animated completion:nil];
+}
+
+- (void)popViewControllerAnimated:(BOOL)animated completion:(void (^)(void))success {
     
     UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
     
@@ -97,6 +119,9 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
     }
     
     NSMutableArray *viewControllerStack = [rootViewController viewControllerStack];
+    
+    BOOL previousClip = rootViewController.view.clipsToBounds;
+    rootViewController.view.clipsToBounds = YES;
     
     // Cant pop if we have no children
     if (!viewControllerStack || [viewControllerStack count] == 0) {
@@ -108,12 +133,12 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
     // Move between top and next child
     if ([viewControllerStack count] > 1) {
         UIViewController *nextChildViewController = [viewControllerStack objectAtIndex:([viewControllerStack count] - 2)];
-    
-        nextChildViewController.view.frame = CGRectMake(rootViewController.view.bounds.origin.x - rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, topViewController.view.frame.size.width, topViewController.view.frame.size.height);
         
         [topViewController willMoveToParentViewController:nil];
         
         if (animated) {
+            nextChildViewController.view.frame = CGRectMake(rootViewController.view.bounds.origin.x - rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, topViewController.view.frame.size.width, topViewController.view.frame.size.height);
+            
             [UIView animateWithDuration:0.3 animations:^{
                 topViewController.view.frame = CGRectMake(rootViewController.view.bounds.origin.x + rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, topViewController.view.frame.size.width, topViewController.view.frame.size.height);
             }];
@@ -128,6 +153,11 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
         } completion:^(BOOL finished) {
             [topViewController removeFromParentViewController];
             [viewControllerStack removeObject:topViewController];
+            rootViewController.view.clipsToBounds = previousClip;
+            
+            if (success) {
+                success();
+            }
         }];
     }
     else {
@@ -136,6 +166,13 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
             [topViewController.view removeFromSuperview];
             [topViewController removeFromParentViewController];
             [viewControllerStack removeObject:topViewController];
+            rootViewController.view.clipsToBounds = previousClip;
+            
+            objc_setAssociatedObject(rootViewController, &kIAOVIEWCONTROLLERSTACK_IDENTIFIER, nil, OBJC_ASSOCIATION_RETAIN);
+            
+            if (success) {
+                success();
+            }
         };
         
         if (animated) {
@@ -146,6 +183,8 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
             }];
         }
         else {
+            topViewController.view.frame = CGRectMake(rootViewController.view.bounds.origin.x + rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, topViewController.view.frame.size.width, topViewController.view.frame.size.height);
+            
             removeBlock();
         }
         
@@ -153,12 +192,62 @@ static char kIAOVIEWCONTROLLERSTACK_IDENTIFIER;
 }
 
 - (void)popToRootViewControllerAnimated:(BOOL)animated {
+    [self popToRootViewControllerAnimated:animated completion:nil];
+}
+- (void)popToRootViewControllerAnimated:(BOOL)animated completion:(void (^)(void))success {
     
     UIViewController *rootViewController = [self rootViewControllerForNavigationStack];
     
     // Cant pop if we are at the top
     if (rootViewController == self) {
         return;
+    }
+    
+    NSMutableArray *viewControllerStack = [rootViewController viewControllerStack];
+    
+    BOOL previousClip = rootViewController.view.clipsToBounds;
+    rootViewController.view.clipsToBounds = YES;
+    
+    // Cant pop if we have no children
+    if (!viewControllerStack || [viewControllerStack count] == 0) {
+        return;
+    }
+    
+    UIViewController *topViewController = [viewControllerStack objectAtIndex:([viewControllerStack count] - 1)];
+    [viewControllerStack removeObject:topViewController];
+    
+    while ([viewControllerStack count] > 0) {
+        UIViewController *controller = [viewControllerStack objectAtIndex:([viewControllerStack count] - 1)];
+        
+        [controller willMoveToParentViewController:nil];
+        [controller removeFromParentViewController];
+        [viewControllerStack removeObject:controller];
+    }
+    
+    void (^removeBlock)(void) = ^{
+        [topViewController willMoveToParentViewController:nil];
+        [topViewController.view removeFromSuperview];
+        [topViewController removeFromParentViewController];
+        [viewControllerStack removeObject:topViewController];
+        rootViewController.view.clipsToBounds = previousClip;
+        
+        objc_setAssociatedObject(rootViewController, &kIAOVIEWCONTROLLERSTACK_IDENTIFIER, nil, OBJC_ASSOCIATION_RETAIN);
+        
+        if (success) {
+            success();
+        }
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:0.3 animations:^{
+            topViewController.view.frame = CGRectMake(rootViewController.view.bounds.origin.x + rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, topViewController.view.frame.size.width, topViewController.view.frame.size.height);
+        } completion:^(BOOL finished) {
+            removeBlock();
+        }];
+    }
+    else {
+        topViewController.view.frame = CGRectMake(rootViewController.view.bounds.origin.x + rootViewController.view.bounds.size.width, rootViewController.view.bounds.origin.y, topViewController.view.frame.size.width, topViewController.view.frame.size.height);
+        removeBlock();
     }
 }
 
