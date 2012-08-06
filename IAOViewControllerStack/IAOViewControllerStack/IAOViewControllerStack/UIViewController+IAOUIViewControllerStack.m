@@ -136,6 +136,7 @@ static char kIAOROOTVIEWCONTROLLER_IDENTIFIER;
         } completion:^(BOOL finished) {
             [topViewController removeFromParentViewController];
             rootViewController.view.clipsToBounds = previousClip;
+            objc_setAssociatedObject(topViewController, &kIAOROOTVIEWCONTROLLER_IDENTIFIER, nil, OBJC_ASSOCIATION_ASSIGN);
             
             if (success) {
                 success();
@@ -148,6 +149,7 @@ static char kIAOROOTVIEWCONTROLLER_IDENTIFIER;
             [topViewController.view removeFromSuperview];
             [topViewController removeFromParentViewController];
             rootViewController.view.clipsToBounds = previousClip;
+            objc_setAssociatedObject(topViewController, &kIAOROOTVIEWCONTROLLER_IDENTIFIER, nil, OBJC_ASSOCIATION_ASSIGN);
             
             if (success) {
                 success();
@@ -194,6 +196,7 @@ static char kIAOROOTVIEWCONTROLLER_IDENTIFIER;
     
     while ([rootViewController.childViewControllers count] > 1) {
         UIViewController *controller = [rootViewController.childViewControllers objectAtIndex:([rootViewController.childViewControllers count] - 2)];
+        objc_setAssociatedObject(controller, &kIAOROOTVIEWCONTROLLER_IDENTIFIER, nil, OBJC_ASSOCIATION_ASSIGN);
         
         [controller willMoveToParentViewController:nil];
         [controller removeFromParentViewController];
@@ -203,6 +206,7 @@ static char kIAOROOTVIEWCONTROLLER_IDENTIFIER;
         [topViewController willMoveToParentViewController:nil];
         [topViewController.view removeFromSuperview];
         [topViewController removeFromParentViewController];
+        objc_setAssociatedObject(topViewController, &kIAOROOTVIEWCONTROLLER_IDENTIFIER, nil, OBJC_ASSOCIATION_ASSIGN);
         rootViewController.view.clipsToBounds = previousClip;
         
         if (success) {

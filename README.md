@@ -4,6 +4,8 @@ IAOViewControllerStack is a UIViewController category that adds UINavigationCont
 
 Its functionality is entirely contained within the category, and it's as easy as including the category header file in your view controllers to gain the functionality.
 
+Optional success callback block parameters are provided in order to be called-back after successful push / pop.
+
 ### Push Example
 
 ``` objective-c
@@ -23,8 +25,16 @@ Its functionality is entirely contained within the category, and it's as easy as
 
 ```
 
+### Pop To Root Example
+
+``` objective-c
+
+	[self popToRootViewControllerAnimated:YES];
+
+```
+
 ## Notes
-The category leverages the Objective-C runtime to dynamically associate the required properties to your view controllers.  It uses the UIViewController containement methods added in iOS5 in order to display your view controllers.
+The category leverages the Objective-C runtime to dynamically associate the required property to your view controllers.  It uses the UIViewController containement methods added in iOS5 in order to display your view controllers.
 
 ## Requirements
  - iOS 5+
